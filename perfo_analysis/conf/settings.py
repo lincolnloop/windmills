@@ -99,6 +99,7 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.admindocs',
     'cms',
+    'menus',
     'cms.plugins.text',
     'cms.plugins.teaser',
     'mptt',
