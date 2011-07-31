@@ -1,0 +1,12 @@
+Developer documentation is available in Sphinx format in the docs directory.
+
+Initial installation instructions (including how to build the documentation as
+HTML) can be found in docs/install.rst.
+
+This repo contains a django project that will be used to support the 
+following djangocon 2011 talk:
+
+* http://djangocon.us/schedule/presentations/38/
+
+This is the very early days of this project so at this point there
+is nothing interesting there.
