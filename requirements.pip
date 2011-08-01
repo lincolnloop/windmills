@@ -6,9 +6,9 @@
 
 django==1.3
 south==0.7.3
-uwsgi
 ipdb
 
+-e hg+http://projects.unbit.it/hg/uwsgi#egg=uwsgi
 -e git://github.com/django-mptt/django-mptt.git@0.4.x#egg=django-mptt
 -e git://github.com/divio/django-cms.git@develop#egg=django-cms
 -e git://github.com/django-debug-toolbar/django-debug-toolbar.git#egg=django-debug-toolbar
