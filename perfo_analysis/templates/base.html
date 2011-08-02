@@ -8,8 +8,9 @@
         {% render_block "css" %}
     </head>
     <body>
-       {% placeholder base_content %}
-       {% block base_content%}{% endblock %}
-       {% render_block "js" %}
+        {% block base_menu %}{% endblock %}
+        {% placeholder base_content %}
+        {% block base_content%}{% endblock %}
+        {% render_block "js" %}
     </body>
 </html>

@@ -27,7 +27,8 @@ class Command(BaseCommand):
         # Create page
         page = create_page(name, tmpl, lang,
                            created_by=created_by_user,
-                           **{"parent": parent})
+                           **{"parent": parent,
+                               'in_navigation': True})
         return page
 
     def create_page_descendant(self, depth, page_num, page):
