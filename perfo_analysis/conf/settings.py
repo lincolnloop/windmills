@@ -104,6 +104,8 @@ INSTALLED_APPS = (
     'cms.plugins.teaser',
     'mptt',
     'sekizai',
+
+    'perfo_analysis.apps.cms_spam_pages',
 )
 
 MIDDLEWARE_CLASSES = (
