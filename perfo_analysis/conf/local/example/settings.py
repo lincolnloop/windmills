@@ -17,7 +17,6 @@ DATABASES = {
 
 ROOT_URLCONF = '%s.conf.local.urls' % PROJECT_MODULE_NAME
 
-INSTALLED_APPS += (
-    'django.contrib.admin',
-    'django.contrib.admindocs',
-)
+#INSTALLED_APPS += ()
+#MIDDLEWARE_CLASSES += ()
+

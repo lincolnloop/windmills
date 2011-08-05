@@ -79,7 +79,7 @@ TEMPLATE_DIRS = (
 
 TEMPLATE_CONTEXT_PROCESSORS += (
     # 'Custom context processors here',
-    'django.core.context_processors.auth',
+    'django.contrib.auth.context_processors.auth',
     'django.core.context_processors.i18n',
     'django.core.context_processors.request',
     'django.core.context_processors.media',
@@ -106,9 +106,12 @@ INSTALLED_APPS = (
     'sekizai',
 
     'perfo_analysis.apps.cms_spam_pages',
+
+    'debug_toolbar',
 )
 
 MIDDLEWARE_CLASSES = (
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -130,8 +133,12 @@ CMS_MEDIA_URL = STATIC_URL + CMS_MEDIA_PATH
 
 
 CMS_TEMPLATES = (
-    ('template_1.html', 'Template One'),
-    ('template_2.html', 'Template Two'),
+    ('template_nomenu_0placeholder.html', 'No menu with 0 placeholder'),
+    ('template_menu_0placeholder.html', 'Menu with 0 placeholder'),
+    ('template_menu_1placeholder.html', 'Menu with 1 placeholder'),
+    ('template_menu_10placeholders.html', 'Menu with 10 placeholders'),
+    ('template_nomenu_1placeholder.html', 'No menu with 1 placeholder'),
+    ('template_nomenu_10placeholders.html', 'No menu with 10 placeholders'),
 )
 
 LANGUAGES = [
@@ -139,3 +146,28 @@ LANGUAGES = [
 ]
 
 CMS_MODERATOR = False
+
+#==========================================================================
+# django-debug-toolbar settings
+#==========================================================================
+INTERNAL_IPS = ('127.0.0.1',)
+
+DEBUG_TOOLBAR_PANELS = (
+    'debug_toolbar.panels.version.VersionDebugPanel',
+    'debug_toolbar.panels.timer.TimerDebugPanel',
+    'debug_toolbar.panels.settings_vars.SettingsVarsDebugPanel',
+    'debug_toolbar.panels.headers.HeaderDebugPanel',
+    'debug_toolbar.panels.request_vars.RequestVarsDebugPanel',
+    'debug_toolbar.panels.template.TemplateDebugPanel',
+    'debug_toolbar.panels.sql.SQLDebugPanel',
+    'debug_toolbar.panels.signals.SignalDebugPanel',
+    'debug_toolbar.panels.logger.LoggingPanel',
+)
+
+DEBUG_TOOLBAR_CONFIG = {
+    'INTERCEPT_REDIRECTS': False,
+    #'SHOW_TOOLBAR_CALLBACK': custom_show_toolbar,
+    #'EXTRA_SIGNALS': ['myproject.signals.MySignal'],
+    'HIDE_DJANGO_SQL': False,
+}
+

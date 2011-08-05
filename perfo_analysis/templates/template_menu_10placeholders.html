@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load cms_tags menu_tags %}
+
+{% block base_menu %}
+    <ul>
+        {% show_menu 0 100 100 100 %}
+    </ul>
+{% endblock %}
+
+{% block base_content %}
+    {% placeholder template_1_content %}
+    {% placeholder template_2_content %}
+    {% placeholder template_3_content %}
+    {% placeholder template_4_content %}
+    {% placeholder template_5_content %}
+    {% placeholder template_6_content %}
+    {% placeholder template_7_content %}
+    {% placeholder template_8_content %}
+    {% placeholder template_9_content %}
+    {% placeholder template_10_content %}
+
+{% endblock %}
