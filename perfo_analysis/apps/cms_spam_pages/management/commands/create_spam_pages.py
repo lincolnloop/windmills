@@ -22,7 +22,6 @@ class Command(BaseCommand):
         # default template is template_menu_1placeholder.html
         make_option("--template", dest="template",
                     default=settings.CMS_TEMPLATES[2][0])
-,
     )
 
     def create_page(self, name, template,
@@ -43,11 +42,15 @@ class Command(BaseCommand):
                                page_num, plugin_num, page=None):
         if depth > 0:
             for i in range(page_num):
-                next_page = self.create_page('Page: %s - %s' % (str(i), str(depth)),
-                                             template=template, plugin_num=plugin_num,
+                next_page = self.create_page('Page: %s - %s' %
+                                                (str(i), str(depth)),
+                                             template=template,
+                                             plugin_num=plugin_num,
                                              parent=page)
-                self.create_page_descendant(template, depth - 1,
-                                            page_num, next_page)
+                if depth > 1:
+                    self.create_page_descendant(template, depth - 1,
+                                                page_num, plugin_num,
+                                                next_page)
 
     def get_html_lorem_paragraph(self, paragraph_num):
         html = ""
@@ -63,14 +66,14 @@ class Command(BaseCommand):
             for i in range(plugin_num):
                 add_plugin(placeholder, klass_text_plugin,
                             settings.LANGUAGES[0][0],
-                            **{'body': self.get_html_lorem_paragraph(2)})
+                            **{'body': self.get_html_lorem_paragraph(1)})
 
     def handle(self, *args, **options):
         try:
             page_num = int(options['page-num'])
             depth = int(options['depth'])
             template = options['template']
-            plugin_num = options['plugin-num']
+            plugin_num = int(options['plugin-num'])
             for i in range(page_num):
                 self.create_page_descendant(template, depth,
                                             page_num, plugin_num)
