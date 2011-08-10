@@ -60,8 +60,8 @@ MEDIA_ROOT = os.path.join(VAR_ROOT, 'uploads')
 
 STATICFILES_DIRS = (
     os.path.join(PROJECT_DIR, PROJECT_MODULE_NAME, 'static'),
-    os.path.join(PROJECT_DIR, '..', 
-        'django-cms', 'cms' , 'media'),
+#    os.path.join(PROJECT_DIR, '..', 
+#        'django-cms', 'cms' , 'media'),
 )
 
 STATICFILES_FINDERS = (

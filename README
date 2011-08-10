@@ -31,6 +31,14 @@ Create the db::
 
     manage.py syncdb --all
 
+
+Collect the static files::
+
+    manage.py collectstatic
+
+..Note:: Based on the version of django cms you are using you might have to 
+tweak the STATICFILES_DIRS.
+
 Usage
 ======
 
@@ -46,3 +54,9 @@ Get the list of URLs that can be tested::
 Rinse your cms tables::
 
     manage.py reset cms
+
+This project requires uwsgi and it comes with a default configuration that can serve it
+including the static files::
+
+    uwsgi --ini server_configs/dev/uwsgi_conf.ini
+
