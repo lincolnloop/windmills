@@ -74,9 +74,8 @@ class Command(BaseCommand):
             depth = int(options['depth'])
             template = options['template']
             plugin_num = int(options['plugin-num'])
-            for i in range(page_num):
-                self.create_page_descendant(template, depth,
-                                            page_num, plugin_num)
+            self.create_page_descendant(template, depth,
+                                        page_num, plugin_num)
 
             #Publish the pages
             for page in Page.objects.drafts():
