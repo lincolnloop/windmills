@@ -10,3 +10,39 @@ following djangocon 2011 talk:
 
 This is the very early days of this project so at this point there
 is nothing interesting there.
+
+
+Intallation
+============
+
+In order to install this project you can ::
+
+    pip install -e git+git@github.com:lincolnloop/windmills.git#egg=windmills
+
+Then you can pull all the requirements ::
+
+    pip install -r src/windmills/requirements.pip
+
+Copy the example configuration::
+
+    cp src/windmills/perfo_analysis/conf/local/example/* src/windmills/perfo_analysis/conf/local/
+
+Create the db::
+
+    manage.py syncdb --all
+
+Usage
+======
+
+Create a dummy django-cms web site with 3 pages per level
+and 2 levels of depth::
+
+    manage.py create_spam_pages --page-num=3 --depth=2 --template=template_menu_1placeholder.html
+
+Get the list of URLs that can be tested::
+
+    manage.py get_page_urls --domain-name=localhost:8000
+
+Rinse your cms tables::
+
+    manage.py reset cms
