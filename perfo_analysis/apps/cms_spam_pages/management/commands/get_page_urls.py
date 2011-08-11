@@ -20,7 +20,11 @@ class Command(BaseCommand):
         make_option("--domain-name",
                     dest='domain_name',
                     default=(Site.objects.get(id=settings.SITE_ID)
-                                         .domain))
+                                         .domain)),
+        make_option("--no-domain",
+                    action='store_true',
+                    dest='no_domain',
+                    default=False)
     )
 
     def get_published_pages(self):
@@ -38,7 +42,10 @@ class Command(BaseCommand):
         try:
             filename = options['filename']
             template = options['template']
-            domain_name = options['domain_name']
+            if options['no_domain']:
+                domain_name = None
+            else:
+                domain_name = options['domain_name']
             string_urls = self.get_string_urls(template,
                     extra_context={'domain_name': domain_name})
             if filename:

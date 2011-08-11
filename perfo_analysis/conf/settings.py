@@ -175,3 +175,8 @@ DEBUG_TOOLBAR_CONFIG = {
     'HIDE_DJANGO_SQL': False,
 }
 
+DEBUG_LOGGING_CONFIG = {
+    'ENABLED': True,
+    'SQL_EXTRA': True,
+    'CACHE_EXTRA': True,
+}

@@ -1,3 +1,2 @@
-{% for page in pages %}
-http://{{ domain_name }}{{ page.get_absolute_url }}
+{% for page in pages %}{% if domain_name %}http://{{ domain_name }}{% endif %}{{ page.get_absolute_url }}
 {% endfor %}
