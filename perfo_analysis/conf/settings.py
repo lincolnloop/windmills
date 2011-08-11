@@ -108,10 +108,10 @@ INSTALLED_APPS = (
     'perfo_analysis.apps.cms_spam_pages',
 
     'debug_toolbar',
+    'debug_logging',
 )
 
 MIDDLEWARE_CLASSES = (
-    'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -120,6 +120,7 @@ MIDDLEWARE_CLASSES = (
     'cms.middleware.page.CurrentPageMiddleware',
     'cms.middleware.user.CurrentUserMiddleware',
     'cms.middleware.toolbar.ToolbarMiddleware',
+    'debug_logging.middleware.DebugLoggingMiddleware',
 )
 
 #==========================================================================
@@ -153,15 +154,18 @@ CMS_MODERATOR = False
 INTERNAL_IPS = ('127.0.0.1',)
 
 DEBUG_TOOLBAR_PANELS = (
+    'debug_logging.panels.cache.CacheLoggingPanel',
     'debug_toolbar.panels.version.VersionDebugPanel',
-    'debug_toolbar.panels.timer.TimerDebugPanel',
-    'debug_toolbar.panels.settings_vars.SettingsVarsDebugPanel',
+    'debug_logging.panels.timer.TimerLoggingPanel',
+    'debug_logging.panels.settings_vars.SettingsVarsLoggingPanel',
     'debug_toolbar.panels.headers.HeaderDebugPanel',
     'debug_toolbar.panels.request_vars.RequestVarsDebugPanel',
     'debug_toolbar.panels.template.TemplateDebugPanel',
-    'debug_toolbar.panels.sql.SQLDebugPanel',
+    'debug_logging.panels.sql.SQLLoggingPanel',
     'debug_toolbar.panels.signals.SignalDebugPanel',
     'debug_toolbar.panels.logger.LoggingPanel',
+    'debug_logging.panels.revision.RevisionLoggingPanel',
+    'debug_logging.panels.identity.IdentityLoggingPanel',
 )
 
 DEBUG_TOOLBAR_CONFIG = {
