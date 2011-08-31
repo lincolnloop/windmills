@@ -106,10 +106,13 @@ INSTALLED_APPS = (
     'sekizai',
 
     'perfo_analysis.apps.cms_spam_pages',
-
-    'debug_toolbar',
-    'debug_logging',
 )
+
+if DEBUG:
+    INSTALLED_APPS += (
+        'debug_toolbar',
+        'debug_logging',
+    )
 
 MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
@@ -120,8 +123,12 @@ MIDDLEWARE_CLASSES = (
     'cms.middleware.page.CurrentPageMiddleware',
     'cms.middleware.user.CurrentUserMiddleware',
     'cms.middleware.toolbar.ToolbarMiddleware',
-    'debug_logging.middleware.DebugLoggingMiddleware',
 )
+
+if DEBUG:
+    MIDDLEWARE_CLASSES += (
+        'debug_logging.middleware.DebugLoggingMiddleware',
+    )
 
 #==========================================================================
 # django-cms settings
@@ -151,32 +158,33 @@ CMS_MODERATOR = False
 #==========================================================================
 # django-debug-toolbar settings
 #==========================================================================
-INTERNAL_IPS = ('127.0.0.1',)
+if DEBUG:
+    INTERNAL_IPS = ('127.0.0.1',)
 
-DEBUG_TOOLBAR_PANELS = (
-    'debug_logging.panels.cache.CacheLoggingPanel',
-    'debug_toolbar.panels.version.VersionDebugPanel',
-    'debug_logging.panels.timer.TimerLoggingPanel',
-    'debug_logging.panels.settings_vars.SettingsVarsLoggingPanel',
-    'debug_toolbar.panels.headers.HeaderDebugPanel',
-    'debug_toolbar.panels.request_vars.RequestVarsDebugPanel',
-    'debug_toolbar.panels.template.TemplateDebugPanel',
-    'debug_logging.panels.sql.SQLLoggingPanel',
-    'debug_toolbar.panels.signals.SignalDebugPanel',
-    'debug_toolbar.panels.logger.LoggingPanel',
-    'debug_logging.panels.revision.RevisionLoggingPanel',
-    'debug_logging.panels.identity.IdentityLoggingPanel',
-)
+    DEBUG_TOOLBAR_PANELS = (
+        'debug_logging.panels.cache.CacheLoggingPanel',
+        'debug_toolbar.panels.version.VersionDebugPanel',
+        'debug_logging.panels.timer.TimerLoggingPanel',
+        'debug_logging.panels.settings_vars.SettingsVarsLoggingPanel',
+        'debug_toolbar.panels.headers.HeaderDebugPanel',
+        'debug_toolbar.panels.request_vars.RequestVarsDebugPanel',
+        'debug_toolbar.panels.template.TemplateDebugPanel',
+        'debug_logging.panels.sql.SQLLoggingPanel',
+        'debug_toolbar.panels.signals.SignalDebugPanel',
+        'debug_toolbar.panels.logger.LoggingPanel',
+        'debug_logging.panels.revision.RevisionLoggingPanel',
+        'debug_logging.panels.identity.IdentityLoggingPanel',
+    )
 
-DEBUG_TOOLBAR_CONFIG = {
-    'INTERCEPT_REDIRECTS': False,
-    #'SHOW_TOOLBAR_CALLBACK': custom_show_toolbar,
-    #'EXTRA_SIGNALS': ['myproject.signals.MySignal'],
-    'HIDE_DJANGO_SQL': False,
-}
+    DEBUG_TOOLBAR_CONFIG = {
+        'INTERCEPT_REDIRECTS': False,
+        #'SHOW_TOOLBAR_CALLBACK': custom_show_toolbar,
+        #'EXTRA_SIGNALS': ['myproject.signals.MySignal'],
+        'HIDE_DJANGO_SQL': False,
+    }
 
-DEBUG_LOGGING_CONFIG = {
-    'ENABLED': True,
-    'SQL_EXTRA': True,
-    'CACHE_EXTRA': True,
-}
+    DEBUG_LOGGING_CONFIG = {
+        'ENABLED': True,
+        'SQL_EXTRA': True,
+        'CACHE_EXTRA': True,
+    }
