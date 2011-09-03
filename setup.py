@@ -6,4 +6,5 @@ setup(name='perfo_analysis',
       packages=find_packages(),
       package_data={'perfo_analysis': ['bin/*.*', 'static/*.*', 'templates/*.*']},
       exclude_package_data={'perfo_analysis': ['bin/*.pyc']},
-      scripts=['perfo_analysis/bin/manage.py'])
+      scripts=['perfo_analysis/bin/manage.py',
+               'perfo_analysis/bin/uwsgi_start.sh'])
