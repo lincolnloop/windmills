@@ -13,6 +13,6 @@ django-mptt==0.4.2
 # uwsgi version that is none to work
 #-e hg+http://projects.unbit.it/hg/uwsgi@9a68a248c8e49f20c6a7840a1f1c6a4a0c7fee9c#egg=uwsgi
 -e hg+http://projects.unbit.it/hg/uwsgi@#egg=uwsgi
--e git://github.com/divio/django-cms.git@develop#egg=django-cms
+-e git://github.com/divio/django-cms.git@03e7d01ba570808715ff84f47943e23dafb9ed7d#egg=django-cms
 -e git://github.com/jbalogh/django-debug-cache-panel.git#egg=django-debug-cache-panel
 -e git://github.com/lincolnloop/django-debug-logging.git@develop#egg=django-debug-logging
