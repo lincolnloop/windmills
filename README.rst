@@ -1,6 +1,8 @@
 Stop Tilting at Windmills
 =========================
 
+You can view the slides `here <https://github.com/lincolnloop/windmills>`_
+
 Abstract
 ********
 
