@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+<!--
+  Copyright 2010 Google Inc.
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+  Original slides: Marcin Wichary (mwichary@google.com)
+  Modifications: Ernest Delgado (ernestd@google.com)
+                 Alex Russell (slightlyoff@chromium.org)
+
+  landslide modifications: Adam Zapletal (adamzap@gmail.com)
+                           Nicolas Perriault (nperriault@gmail.com)
+  
+  Lincoln Loop modifications: Michael Trythall (michael@lincolnloop.com)
+-->
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Stop Tilting At Windmills</title>
+    <!-- Styles -->
+    
+    <link rel="stylesheet" media="print" href="style/css/print.css">
+    <link rel="stylesheet" media="screen, projection" href="style/css/screen.css">
+    
+    <!-- /Styles -->
+    <!-- Javascripts -->
+    
+    <script type="text/javascript" src="style/js/slides.js"></script>
+    
+    <!-- /Javascripts -->
+</head>
+<body>
+  <div class="presentation">
+    <div class="slides">
+      
+      <!-- slide source: slides.md -->
+      <div class="slide intro">
+        <div class="inner">
+          
+          <header><h1>Stop Tilting At Windmills</h1></header>
+          
+          
+          <section><p><strong>Brandon Konkle</strong>  <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#60;&#98;&#114;&#97;&#110;&#100;&#111;&#110;&#64;&#108;&#105;&#110;&#99;&#111;&#108;&#110;&#108;&#111;&#111;&#112;&#46;&#99;&#111;&#109;">&lt;&#98;&#114;&#97;&#110;&#100;&#111;&#110;&#64;&#108;&#105;&#110;&#99;&#111;&#108;&#110;&#108;&#111;&#111;&#112;&#46;&#99;&#111;&#109;</a>&gt;</p>
+<p><strong>Yann Malet</strong>      <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#60;&#121;&#97;&#110;&#110;&#64;&#108;&#105;&#110;&#99;&#111;&#108;&#110;&#108;&#111;&#111;&#112;&#46;&#99;&#111;&#109;">&lt;&#121;&#97;&#110;&#110;&#64;&#108;&#105;&#110;&#99;&#111;&#108;&#110;&#108;&#111;&#111;&#112;&#46;&#99;&#111;&#109;</a>&gt;</p>
+<p>DjangoCon 2011
+Portland, OR</p></section>
+          
+        </div>
+        <footer>
+          
+          <aside class="source">
+            Source: <a href="slides.md">slides.md</a>
+          </aside>
+          
+          <aside class="page_number">
+            1/30
+          </aside>
+        </footer>
+      </div>
+      
+      <!-- slide source: slides.md -->
+      <div class="slide">
+        <div class="inner">
+          
+          <header><h1>Target Audience</h1></header>
+          
+          
+          <section><ul>
+<li>You have built one or more successful application</li>
+<li>You need to scale it to reach a larger audience</li>
+</ul></section>
+          
+        </div>
+        <footer>
+          
+          <aside class="source">
+            Source: <a href="slides.md">slides.md</a>
+          </aside>
+          
+          <aside class="page_number">
+            2/30
+          </aside>
+        </footer>
+      </div>
+      
+      <!-- slide source: slides.md -->
+      <div class="slide">
+        <div class="inner">
+          
+          <header><h1>Agenda</h1></header>
+          
+          
+          <section><h2>Performance Testing</h2>
+<ul>
+<li>Debug Toolbar</li>
+<li>Debug Logging</li>
+<li>Continuous testing</li>
+</ul>
+<h2>Load Testing</h2>
+<ul>
+<li>Jmeter</li>
+<li>Command-line tools</li>
+</ul></section>
+          
+        </div>
+        <footer>
+          
+          <aside class="source">
+            Source: <a href="slides.md">slides.md</a>
+          </aside>
+          
+          <aside class="page_number">
+            3/30
+          </aside>
+        </footer>
+      </div>
+      
+      <!-- slide source: slides.md -->
+      <div class="slide">
+        <div class="inner">
+          
+          <header><h2>This talk will not discuss</h2></header>
+          
+          
+          <section><ul>
+<li>How to optimize django apps<ul>
+<li>Optimizing queries</li>
+<li>Caching</li>
+<li>etc...</li>
+</ul>
+</li>
+<li>
+<p>How scale your infrastructure</p>
+</li>
+</ul></section>
+          
+        </div>
+        <footer>
+          
+          <aside class="source">
+            Source: <a href="slides.md">slides.md</a>
+          </aside>
+          
+          <aside class="page_number">
+            4/30
+          </aside>
+        </footer>
+      </div>
+      
+      <!-- slide source: slides.md -->
+      <div class="slide">
+        <div class="inner">
+          
+          <header><h1>Django community's focus is evolving</h1></header>
+          
+          
+          <section><h2>Where are we coming from?</h2>
+<ul>
+<li>2008 - Building reusable apps</li>
+<li>2009, 2010 - Testing and continous integration</li>
+</ul>
+<h2>Where are we (hopefully) going?</h2>
+<ul>
+<li>Larger scale</li>
+<li>Better performance</li>
+</ul></section>
+          
+        </div>
+        <footer>
+          
+          <aside class="source">
+            Source: <a href="slides.md">slides.md</a>
+          </aside>
+          
+          <aside class="page_number">
+            5/30
+          </aside>
+        </footer>
+      </div>
+      
+      <!-- slide source: slides.md -->
+      <div class="slide image">
+        <div class="inner">
+          
+          <header><h1>Tilting at Windmills</h1></header>
+          
+          
+          <section><p>Like the brave but misguided Don Quixote we often charge after performance problems we think are monstrous,
+<br/>but turn out to be just minor issues.</p>
+<p><img alt="Don Quixote" src="images/full-tilt.png" /></p></section>
+          
+        </div>
+        <footer>
+          
+          <aside class="source">
+            Source: <a href="slides.md">slides.md</a>
+          </aside>
+          
+          <aside class="page_number">
+            6/30
+          </aside>
+        </footer>
+      </div>
+      
+      <!-- slide source: slides.md -->
+      <div class="slide">
+        <div class="inner">
+          
+          <header><h1>Example Django-CMS Site</h1></header>
+          
+          
+          <section><p>We built few utilities on top of django-cms to:</p>
+<ul>
+<li>Create a dummy web site on demand</li>
+<li>Get the list of urls for the django-cms pages</li>
+</ul></section>
+          
+        </div>
+        <footer>
+          
+          <aside class="source">
+            Source: <a href="slides.md">slides.md</a>
+          </aside>
+          
+          <aside class="page_number">
+            7/30
+          </aside>
+        </footer>
+      </div>
+      
+      <!-- slide source: slides.md -->
+      <div class="slide intro">
+        <div class="inner">
+          
+          <header><h1>Performance Testing</h1></header>
+          
+          
+        </div>
+        <footer>
+          
+          <aside class="source">
+            Source: <a href="slides.md">slides.md</a>
+          </aside>
+          
+          <aside class="page_number">
+            8/30
+          </aside>
+        </footer>
+      </div>
+      
+      <!-- slide source: slides.md -->
+      <div class="slide">
+        <div class="inner">
+          
+          <header><h1>Performance Testing</h1></header>
+          
+          
+          <section><p><em>"You can't manage what you don't measure"</em></p>
+<h2>What are we looking for?</h2>
+<ul>
+<li>Time to load a page</li>
+<li>Number of queries per page</li>
+<li>Time taken by the queries</li>
+<li>Number of cache hits/misses</li>
+<li>Time spent waiting for external services</li>
+</ul></section>
+          
+        </div>
+        <footer>
+          
+          <aside class="source">
+            Source: <a href="slides.md">slides.md</a>
+          </aside>
+          
+          <aside class="page_number">
+            9/30
+          </aside>
+        </footer>
+      </div>
+      
+      <!-- slide source: slides.md -->
+      <div class="slide bigimage">
+        <div class="inner">
+          
+          <header><h1>Response Time</h1></header>
+          
+          
+          <section><p><img alt="Counting Seconds" src="images/response-time.png" /></p></section>
+          
+        </div>
+        <footer>
+          
+          <aside class="source">
+            Source: <a href="slides.md">slides.md</a>
+          </aside>
+          
+          <aside class="page_number">
+            10/30
+          </aside>
+        </footer>
+      </div>
+      
+      <!-- slide source: slides.md -->
+      <div class="slide">
+        <div class="inner">
+          
+          <header><h1>Response Time</h1></header>
+          
+          
+          <section><h2>Pros</h2>
+<ul>
+<li>No setup.</li>
+<li>Closest to the user experience.</li>
+</ul>
+<h2>Cons</h2>
+<ul>
+<li>It doesn't measure the internals of your application.</li>
+<li>It's a simple good/not good evaluation, with no clues about why.</li>
+</ul></section>
+          
+        </div>
+        <footer>
+          
+          <aside class="source">
+            Source: <a href="slides.md">slides.md</a>
+          </aside>
+          
+          <aside class="page_number">
+            11/30
+          </aside>
+        </footer>
+      </div>
+      
+      <!-- slide source: slides.md -->
+      <div class="slide bigimage">
+        <div class="inner">
+          
+          <header><h1>Django Debug Toolbar</h1></header>
+          
+          
+          <section><p><img alt="Django Debug Toolbar" src="images/debug-toolbar.png" /></p></section>
+          
+        </div>
+        <footer>
+          
+          <aside class="source">
+            Source: <a href="slides.md">slides.md</a>
+          </aside>
+          
+          <aside class="page_number">
+            12/30
+          </aside>
+        </footer>
+      </div>
+      
+      <!-- slide source: slides.md -->
+      <div class="slide">
+        <div class="inner">
+          
+          <header><h1>Django Debug Toolbar</h1></header>
+          
+          
+          <section><h2>Pros</h2>
+<ul>
+<li>Provides a variety of information about what is going on inside.</li>
+</ul>
+<h2>Cons</h2>
+<ul>
+<li>Requires a third party application and some configuration.</li>
+<li>It's on demand.</li>
+<li>No history.</li>
+</ul></section>
+          
+        </div>
+        <footer>
+          
+          <aside class="source">
+            Source: <a href="slides.md">slides.md</a>
+          </aside>
+          
+          <aside class="page_number">
+            13/30
+          </aside>
+        </footer>
+      </div>
+      
+      <!-- slide source: slides.md -->
+      <div class="slide bigimage">
+        <div class="inner">
+          
+          <header><h1>Django Debug Logging</h1></header>
+          
+          
+          <section><p><img alt="Django Debug Logging" src="images/debug-logging.png" /></p></section>
+          
+        </div>
+        <footer>
+          
+          <aside class="source">
+            Source: <a href="slides.md">slides.md</a>
+          </aside>
+          
+          <aside class="page_number">
+            14/30
+          </aside>
+        </footer>
+      </div>
+      
+      <!-- slide source: slides.md -->
+      <div class="slide">
+        <div class="inner">
+          
+          <header><h1>Django Debug Logging</h1></header>
+          
+          
+          <section><h2>Pros</h2>
+<ul>
+<li>Automated test covering a set of URLs</li>
+<li>Optimised for history tracking</li>
+<li>Repeatable process</li>
+<li>Provides aggregated data</li>
+</ul>
+<h2>Cons</h2>
+<ul>
+<li>Young project</li>
+<li>Requires another third party application and more configuration.</li>
+</ul></section>
+          
+        </div>
+        <footer>
+          
+          <aside class="source">
+            Source: <a href="slides.md">slides.md</a>
+          </aside>
+          
+          <aside class="page_number">
+            15/30
+          </aside>
+        </footer>
+      </div>
+      
+      <!-- slide source: slides.md -->
+      <div class="slide">
+        <div class="inner">
+          
+          <header><h1>Still A Work In Progress</h1></header>
+          
+          
+          <section><p>At this stage it is a proof-of-concept. There are few outstanding issues and pending features.</p>
+<ul>
+<li>Better integration with django-debug-toolbar</li>
+<li>Support configurable log handlers, instead of just the database handler</li>
+<li>Optionally use unit tests instead of just url lists</li>
+</ul></section>
+          
+        </div>
+        <footer>
+          
+          <aside class="source">
+            Source: <a href="slides.md">slides.md</a>
+          </aside>
+          
+          <aside class="page_number">
+            16/30
+          </aside>
+        </footer>
+      </div>
+      
+      <!-- slide source: slides.md -->
+      <div class="slide">
+        <div class="inner">
+          
+          <header><h1>Continuous Testing</h1></header>
+          
+          
+          <section><h2>Why?</h2>
+<ul>
+<li>Helps narrow down the origin of performance problems</li>
+<li>Performance issues can't always be easily predicted</li>
+<li>Identify issues before they impact production</li>
+</ul>
+<h2>How?</h2>
+<ul>
+<li>Manually run performance test throughout the day</li>
+<li>Run periodically with cron</li>
+<li>Integrate with a tool like Jenkins</li>
+</ul></section>
+          
+        </div>
+        <footer>
+          
+          <aside class="source">
+            Source: <a href="slides.md">slides.md</a>
+          </aside>
+          
+          <aside class="page_number">
+            17/30
+          </aside>
+        </footer>
+      </div>
+      
+      <!-- slide source: slides.md -->
+      <div class="slide intro">
+        <div class="inner">
+          
+          <header><h1>Load Testing</h1></header>
+          
+          
+        </div>
+        <footer>
+          
+          <aside class="source">
+            Source: <a href="slides.md">slides.md</a>
+          </aside>
+          
+          <aside class="page_number">
+            18/30
+          </aside>
+        </footer>
+      </div>
+      
+      <!-- slide source: slides.md -->
+      <div class="slide">
+        <div class="inner">
+          
+          <header><h1>Load Testing</h1></header>
+          
+          
+          <section><ul>
+<li>Taking your entire application infrastructure into account.</li>
+<li>Understanding how your performance changes under stress and over time.</li>
+<li>Creating realistic test plans that imitate real life traffic.</li>
+</ul></section>
+          
+        </div>
+        <footer>
+          
+          <aside class="source">
+            Source: <a href="slides.md">slides.md</a>
+          </aside>
+          
+          <aside class="page_number">
+            19/30
+          </aside>
+        </footer>
+      </div>
+      
+      <!-- slide source: slides.md -->
+      <div class="slide">
+        <div class="inner">
+          
+          <header><h1>What are we looking for?</h1></header>
+          
+          
+          <section><h2>Database</h2>
+<ul>
+<li>Handling numerous queries in parallel</li>
+<li>Types of queries running at the same time</li>
+</ul>
+<h2>Caching</h2>
+<ul>
+<li>Cache key expiration</li>
+<li>Cache size and key eviction</li>
+</ul></section>
+          
+        </div>
+        <footer>
+          
+          <aside class="source">
+            Source: <a href="slides.md">slides.md</a>
+          </aside>
+          
+          <aside class="page_number">
+            20/30
+          </aside>
+        </footer>
+      </div>
+      
+      <!-- slide source: slides.md -->
+      <div class="slide">
+        <div class="inner">
+          
+          <header><h1>What are we looking for? (Cont'd)</h1></header>
+          
+          
+          <section><h2>Servers</h2>
+<ul>
+<li>Memory utilization and swapping</li>
+<li>CPU load averages</li>
+<li>Balancing load effectively between database servers, app servers, utility servers, etc.</li>
+</ul></section>
+          
+        </div>
+        <footer>
+          
+          <aside class="source">
+            Source: <a href="slides.md">slides.md</a>
+          </aside>
+          
+          <aside class="page_number">
+            21/30
+          </aside>
+        </footer>
+      </div>
+      
+      <!-- slide source: slides.md -->
+      <div class="slide">
+        <div class="inner">
+          
+          <header><h1>Jmeter</h1></header>
+          
+          
+          <section><ul>
+<li>Use a GUI to plan out a load test with a huge variety of highly configurable components.</li>
+<li>Set up samplers for each view your users will access.</li>
+<li>Create text files with sample data that can be read by each sampler.</li>
+<li>Use post-processors to retrieve data from your responses, such as CSRF keys.</li>
+<li>Authenticate a Django user by taking the CSRF key from a GET request, then POSTing it along with your credentials.</li>
+<li>Use throughput controllers to define the percentage of traffic on each request type.</li>
+</ul></section>
+          
+        </div>
+        <footer>
+          
+          <aside class="source">
+            Source: <a href="slides.md">slides.md</a>
+          </aside>
+          
+          <aside class="page_number">
+            22/30
+          </aside>
+        </footer>
+      </div>
+      
+      <!-- slide source: slides.md -->
+      <div class="slide bigimage">
+        <div class="inner">
+          
+          <header><h1>Jmeter UI</h1></header>
+          
+          
+          <section><p>jmeter -p user.properties</p>
+<p><img alt="Jmeter UI" src="images/windmill_plan-Apache_JMeter.png" /></p></section>
+          
+        </div>
+        <footer>
+          
+          <aside class="source">
+            Source: <a href="slides.md">slides.md</a>
+          </aside>
+          
+          <aside class="page_number">
+            23/30
+          </aside>
+        </footer>
+      </div>
+      
+      <!-- slide source: slides.md -->
+      <div class="slide">
+        <div class="inner">
+          
+          <header><h1>Jmeter CLI</h1></header>
+          
+          
+          <section><p>jmeter -n -p user.properties -t windmill_plan.jmx -l results.jtl</p></section>
+          
+        </div>
+        <footer>
+          
+          <aside class="source">
+            Source: <a href="slides.md">slides.md</a>
+          </aside>
+          
+          <aside class="page_number">
+            24/30
+          </aside>
+        </footer>
+      </div>
+      
+      <!-- slide source: slides.md -->
+      <div class="slide has_notes">
+        <div class="inner">
+          
+          <header><h1>Anatomy of a POST</h1></header>
+          
+          
+          <section><p>Working around <a href="https://docs.djangoproject.com/en/dev/ref/contrib/csrf/">CSRF</a> protection</p>
+<p><img alt="CSRF incantation" src="images/Anatomy_of_POST.png" /></p>
+<p class="notes">CSRF - This type of attack occurs when a malicious Web site contains a link, a form button or some javascript that is intended to perform some action on your Web site, using the credentials of a logged-in user who visits the malicious site in their browser.</p></section>
+          
+        </div>
+        <footer>
+          
+          <aside class="source">
+            Source: <a href="slides.md">slides.md</a>
+          </aside>
+          
+          <aside class="page_number">
+            25/30
+          </aside>
+        </footer>
+      </div>
+      
+      <!-- slide source: slides.md -->
+      <div class="slide">
+        <div class="inner">
+          
+          <header><h1>Command-Line Tools</h1></header>
+          
+          
+          <section><ul>
+<li><em>htop</em> - An amplified version of <em>top</em> to review load averages, memory utilization, swapping, etc.</li>
+<li><em>dstat</em> - Shows a variety of information about cpu, memory, disk, and network usage.</li>
+<li><em>pg_top</em>, <em>mtop</em> - Displays databases statistics and the process list, allowing you to view details about individual queries.</li>
+<li><em>memcache-top</em> - Retrieves statistics from multiple memcached instances, such as space used/free, hit percentage, evictions.</li>
+</ul></section>
+          
+        </div>
+        <footer>
+          
+          <aside class="source">
+            Source: <a href="slides.md">slides.md</a>
+          </aside>
+          
+          <aside class="page_number">
+            26/30
+          </aside>
+        </footer>
+      </div>
+      
+      <!-- slide source: slides.md -->
+      <div class="slide">
+        <div class="inner">
+          
+          <header><h1>Ressources - Performance analysis</h1></header>
+          
+          
+          <section><ul>
+<li><a href="http://getfirebug.com/">Firebug</a></li>
+<li><a href="https://github.com/django-debug-toolbar/django-debug-toolbar/">Django Debug Toolbar</a></li>
+<li><a href="https://github.com/lincolnloop/django-debug-logging/">Django Debug Logging</a></li>
+<li><a href="http://funkload.nuxeo.org/">Funkload</a></li>
+<li><a href="https://github.com/newsapps/beeswithmachineguns">Bees with Machine Guns</a></li>
+<li><a href="http://webunit.sourceforge.net/">Webunit</a></li>
+<li><a href="http://grinder.sourceforge.net/">Grinder</a></li>
+<li><a href="http://www.joedog.org/index/siege-home">Siege</a></li>
+<li><a href="http://morethanseven.net/2011/06/30/Django-performance-1-measuring-performance.html">Django Performance Patterns</a></li>
+</ul></section>
+          
+        </div>
+        <footer>
+          
+          <aside class="source">
+            Source: <a href="slides.md">slides.md</a>
+          </aside>
+          
+          <aside class="page_number">
+            27/30
+          </aside>
+        </footer>
+      </div>
+      
+      <!-- slide source: slides.md -->
+      <div class="slide">
+        <div class="inner">
+          
+          <header><h1>Resources - Improving performance</h1></header>
+          
+          
+          <section><ul>
+<li><a href="http://www.slideshare.net/zeeg/building-scalable-web-apps">Building Scalable Webapps</a></li>
+<li><a href="http://blip.tv/djangocon/switching-addons-mozilla-org-from-cakephp-to-django-4125605">Switching Mozilla Addons to Django</a></li>
+<li><a href="http://blip.tv/djangocon/scaling-django-web-applications-3060922">Scaling Django Web Applications</a></li>
+<li><a href="http://jacobian.org/writing/django-performance-tips/">Django Performance Tips</a>
+<a href="http://www.revsys.com/writings/postgresql-performance.html">PostgreSQL Performance Tuning</a></li>
+<li><a href="https://github.com/simonw/django-queryset-transform">Queryset Transform</a></li>
+<li><a href="http://packages.python.org/johnny-cache/">Johnny Cache</a></li>
+<li><a href="https://github.com/dziegler/django-cachebot">Cachebot</a></li>
+<li><a href="http://jbalogh.me/projects/cache-machine/">Cache Machine</a></li>
+</ul></section>
+          
+        </div>
+        <footer>
+          
+          <aside class="source">
+            Source: <a href="slides.md">slides.md</a>
+          </aside>
+          
+          <aside class="page_number">
+            28/30
+          </aside>
+        </footer>
+      </div>
+      
+      <!-- slide source: slides.md -->
+      <div class="slide">
+        <div class="inner">
+          
+          <header><h1>Resources - Jmeter</h1></header>
+          
+          
+          <section><ul>
+<li><a href="http://jakarta.apache.org/jmeter/usermanual/index.html">User Manual</a></li>
+<li><a href="http://www.slideshare.net/agoucher/performance-testing-with-jmeter">Performance Testing with Jmeter</a></li>
+<li><a href="https://wiki.jenkins-ci.org/display/JENKINS/Performance+Plugin">Jenkins Performance Plugin</a></li>
+</ul></section>
+          
+        </div>
+        <footer>
+          
+          <aside class="source">
+            Source: <a href="slides.md">slides.md</a>
+          </aside>
+          
+          <aside class="page_number">
+            29/30
+          </aside>
+        </footer>
+      </div>
+      
+      <!-- slide source: slides.md -->
+      <div class="slide break">
+        <div class="inner">
+          
+          <header><h1>Questions?</h1></header>
+          
+          
+          <section><h2>Brandon Konkle - @bkonkle</h2>
+<h2>Yann Malet - @gwadeloop</h2></section>
+          
+        </div>
+        <footer>
+          
+          <aside class="source">
+            Source: <a href="slides.md">slides.md</a>
+          </aside>
+          
+          <aside class="page_number">
+            30/30
+          </aside>
+        </footer>
+      </div>
+      
+    </div>
+  </div>
+  
+  <div id="toc" class="hidden">
+    <h2>Table of Contents</h2>
+    <table>
+      <caption>Table of Contents</caption>
+            
+      <tr id="toc-row-1">
+        <th><a href="#slide1">Stop Tilting At Windmills</a></th>
+        <td><a href="#slide1">1</a></td>
+      </tr>
+      
+            
+      <tr id="toc-row-2">
+        <th><a href="#slide2">Target Audience</a></th>
+        <td><a href="#slide2">2</a></td>
+      </tr>
+      
+            
+      <tr id="toc-row-3">
+        <th><a href="#slide3">Agenda</a></th>
+        <td><a href="#slide3">3</a></td>
+      </tr>
+      
+        
+        <tr id="toc-row-4" class="sub">
+          <th><a href="#slide4">This talk will not discuss</a></th>
+          <td><a href="#slide4">4</a></td>
+        </tr>
+        
+      
+            
+      <tr id="toc-row-5">
+        <th><a href="#slide5">Django community's focus is evolving</a></th>
+        <td><a href="#slide5">5</a></td>
+      </tr>
+      
+            
+      <tr id="toc-row-6">
+        <th><a href="#slide6">Tilting at Windmills</a></th>
+        <td><a href="#slide6">6</a></td>
+      </tr>
+      
+            
+      <tr id="toc-row-7">
+        <th><a href="#slide7">Example Django-CMS Site</a></th>
+        <td><a href="#slide7">7</a></td>
+      </tr>
+      
+            
+      <tr id="toc-row-8">
+        <th><a href="#slide8">Performance Testing</a></th>
+        <td><a href="#slide8">8</a></td>
+      </tr>
+      
+            
+      <tr id="toc-row-9">
+        <th><a href="#slide9">Performance Testing</a></th>
+        <td><a href="#slide9">9</a></td>
+      </tr>
+      
+            
+      <tr id="toc-row-10">
+        <th><a href="#slide10">Response Time</a></th>
+        <td><a href="#slide10">10</a></td>
+      </tr>
+      
+            
+      <tr id="toc-row-11">
+        <th><a href="#slide11">Response Time</a></th>
+        <td><a href="#slide11">11</a></td>
+      </tr>
+      
+            
+      <tr id="toc-row-12">
+        <th><a href="#slide12">Django Debug Toolbar</a></th>
+        <td><a href="#slide12">12</a></td>
+      </tr>
+      
+            
+      <tr id="toc-row-13">
+        <th><a href="#slide13">Django Debug Toolbar</a></th>
+        <td><a href="#slide13">13</a></td>
+      </tr>
+      
+            
+      <tr id="toc-row-14">
+        <th><a href="#slide14">Django Debug Logging</a></th>
+        <td><a href="#slide14">14</a></td>
+      </tr>
+      
+            
+      <tr id="toc-row-15">
+        <th><a href="#slide15">Django Debug Logging</a></th>
+        <td><a href="#slide15">15</a></td>
+      </tr>
+      
+            
+      <tr id="toc-row-16">
+        <th><a href="#slide16">Still A Work In Progress</a></th>
+        <td><a href="#slide16">16</a></td>
+      </tr>
+      
+            
+      <tr id="toc-row-17">
+        <th><a href="#slide17">Continuous Testing</a></th>
+        <td><a href="#slide17">17</a></td>
+      </tr>
+      
+            
+      <tr id="toc-row-18">
+        <th><a href="#slide18">Load Testing</a></th>
+        <td><a href="#slide18">18</a></td>
+      </tr>
+      
+            
+      <tr id="toc-row-19">
+        <th><a href="#slide19">Load Testing</a></th>
+        <td><a href="#slide19">19</a></td>
+      </tr>
+      
+            
+      <tr id="toc-row-20">
+        <th><a href="#slide20">What are we looking for?</a></th>
+        <td><a href="#slide20">20</a></td>
+      </tr>
+      
+            
+      <tr id="toc-row-21">
+        <th><a href="#slide21">What are we looking for? (Cont'd)</a></th>
+        <td><a href="#slide21">21</a></td>
+      </tr>
+      
+            
+      <tr id="toc-row-22">
+        <th><a href="#slide22">Jmeter</a></th>
+        <td><a href="#slide22">22</a></td>
+      </tr>
+      
+            
+      <tr id="toc-row-23">
+        <th><a href="#slide23">Jmeter UI</a></th>
+        <td><a href="#slide23">23</a></td>
+      </tr>
+      
+            
+      <tr id="toc-row-24">
+        <th><a href="#slide24">Jmeter CLI</a></th>
+        <td><a href="#slide24">24</a></td>
+      </tr>
+      
+            
+      <tr id="toc-row-25">
+        <th><a href="#slide25">Anatomy of a POST</a></th>
+        <td><a href="#slide25">25</a></td>
+      </tr>
+      
+            
+      <tr id="toc-row-26">
+        <th><a href="#slide26">Command-Line Tools</a></th>
+        <td><a href="#slide26">26</a></td>
+      </tr>
+      
+            
+      <tr id="toc-row-27">
+        <th><a href="#slide27">Ressources - Performance analysis</a></th>
+        <td><a href="#slide27">27</a></td>
+      </tr>
+      
+            
+      <tr id="toc-row-28">
+        <th><a href="#slide28">Resources - Improving performance</a></th>
+        <td><a href="#slide28">28</a></td>
+      </tr>
+      
+            
+      <tr id="toc-row-29">
+        <th><a href="#slide29">Resources - Jmeter</a></th>
+        <td><a href="#slide29">29</a></td>
+      </tr>
+      
+            
+      <tr id="toc-row-30">
+        <th><a href="#slide30">Questions?</a></th>
+        <td><a href="#slide30">30</a></td>
+      </tr>
+      
+      
+    </table>
+  </div>
+  
+  <script>main()</script>
+</body>
+</html>
