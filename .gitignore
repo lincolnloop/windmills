@@ -2,7 +2,5 @@
 *.pyc
 docs/_build/*
 uploads
-perfo_analysis/conf/local/*.py
-dev.db
 perfo_analysis.egg-info
 jmeter.log
