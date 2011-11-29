@@ -10,7 +10,10 @@ ipdb
 django-debug-toolbar==0.8.5
 django-mptt==0.4.2
 
--e hg+http://projects.unbit.it/hg/uwsgi@#egg=uwsgi
+# Commenting out uwsgi because of Mac install problems.  Mac users should use
+# Homebrew to install uwsgi.
+# -e hg+http://projects.unbit.it/hg/uwsgi@#egg=uwsgi
+
 -e git://github.com/divio/django-cms.git@03e7d01ba570808715ff84f47943e23dafb9ed7d#egg=django-cms
 -e git://github.com/jbalogh/django-debug-cache-panel.git#egg=django-debug-cache-panel
 -e git://github.com/lincolnloop/django-debug-logging.git@develop#egg=django-debug-logging
