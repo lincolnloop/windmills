@@ -1,4 +1,4 @@
-# Import global settings to make it easier to extend settings. 
+# Import global settings to make it easier to extend settings.
 from django.conf.global_settings import *
 
 #==============================================================================
@@ -44,14 +44,14 @@ LOGIN_REDIRECT_URL = '/'
 
 MEDIA_URL = '/uploads/'
 STATIC_URL = '/static/'
-ADMIN_MEDIA_PREFIX= STATIC_URL + 'admin/'
+ADMIN_MEDIA_PREFIX = STATIC_URL + 'admin/'
 
 STATIC_ROOT = os.path.join(VAR_ROOT, 'static')
 MEDIA_ROOT = os.path.join(VAR_ROOT, 'uploads')
 
 STATICFILES_DIRS = (
     os.path.join(PROJECT_DIR, PROJECT_MODULE_NAME, 'static'),
-#    os.path.join(PROJECT_DIR, '..', 
+#    os.path.join(PROJECT_DIR, '..',
 #        'django-cms', 'cms' , 'media'),
 )
 
@@ -175,7 +175,6 @@ if DEBUG:
     }
 
     DEBUG_LOGGING_CONFIG = {
-        'ENABLED': True,
         'SQL_EXTRA': True,
         'CACHE_EXTRA': True,
     }
